@@ -10,10 +10,58 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  int num1,num2;
+  String texttodispplay = "";
+  String res;
+  String operatorselected;
+
+
+  onClickbntval(String btnval){
+        if(btnval == "c"){
+          texttodispplay = "";
+          num1 = 0;
+          num2 = 0;
+          res = "";
+        }
+        else if(btnval == "+" || btnval == "-" || btnval == "/" || btnval == "x"  ){
+          num1 = int.parse(texttodispplay);
+          res = "";
+        operatorselected = btnval;
+        }
+        else if(btnval == "="){
+            num2 = int.parse(texttodispplay);
+
+            if(operatorselected == "+"){
+              res = (num1+num2).toString();
+            }
+
+            if(operatorselected == "-"){
+              res = (num1-num2).toString();
+            }
+
+            if(operatorselected == "/"){
+              res = (num1/num2).toString();
+            }
+
+            if(operatorselected == "x"){
+              res = (num1*num2).toString();
+            }
+
+
+
+
+        }else{
+          res = int.parse(texttodispplay + btnval).toString();
+        }
+        setState(() {
+          texttodispplay = res;
+        });
+  }
+
   Widget custombutton(String btnval){
     return Expanded(
         child: OutlineButton(onPressed: (){
-
+          onClickbntval(btnval);
         },
           padding: EdgeInsets.all(25.0),
         child: Text("$btnval",style: TextStyle(
@@ -36,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
              child: Container(
                padding: EdgeInsets.all(8.0),
               alignment: Alignment.bottomRight,
-              child: Text("Output",style: TextStyle(
+              child: Text("$texttodispplay",style: TextStyle(
                 fontSize: 45,
                 fontWeight: FontWeight.bold
               ),),
