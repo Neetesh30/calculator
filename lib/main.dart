@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
+import 'Calculator.dart';
 
-void main(){
-  runApp(WidgetsApp());
-
-
+void main() {
+  runApp(MyApp());
 }
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Calculator',
+      theme: ThemeData(
+        primarySwatch: Colors.orange,
+      ),
+      home: MyHomePage(),
+    );
+  }
+}
+
